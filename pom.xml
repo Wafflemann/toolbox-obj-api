@@ -1,0 +1,196 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.lundellnet</groupId>
+    <artifactId>toolbox-obj-api</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.2-SNAPSHOT</version>
+    <name>toolbox-obj-api</name>
+
+    <properties>
+	<java.version>1.8</java.version>
+	<maven.version>2.3.2</maven.version>
+	<jaxb.version>2.1</jaxb.version>
+	<jaxb2_plugin.version>0.13.2</jaxb2_plugin.version>
+	<cxf_javadoc.version>3.0.4</cxf_javadoc.version>
+	<toolbox_obj.dir.project_package>${basedir}/src/main/resources/com/lundellnet/toolbox/obj</toolbox_obj.dir.project_package>
+	<toolbox_obj.dir.schema_annotation>${toolbox_obj.dir.project_package}/annotations</toolbox_obj.dir.schema_annotation>
+	<toolbox_obj.dir.generate_annotation>${project.build.directory}/generated-sources/xjc1</toolbox_obj.dir.generate_annotation>
+	<toolbox_obj.dir.api_doc>${project.build.directory}/site/toolbox-obj_apidocs</toolbox_obj.dir.api_doc>
+    </properties>
+
+    <repositories>
+	<repository>
+	    <id>git2.release</id>
+	    <name>git2 release repository</name>
+	    <url>https://git2.lundellnet.com:8084/nexus/content/repositories/releases</url>
+	</repository>
+	<repository>
+	    <id>git2.snapshot</id>
+	    <name>git2 snapshot repository</name>
+	    <url>https://git2.lundellnet.com:8084/nexus/content/repositories/snapshots</url>
+	</repository>
+    </repositories>
+
+    <pluginRepositories>
+	<pluginRepository>
+	    <id>git2.release</id>
+	    <name>git2 release repository</name>
+	    <url>https://git2.lundellnet.com:8084/nexus/content/repositories/releases</url>
+	</pluginRepository>
+	<pluginRepository>
+	    <id>git2.snapshot</id>
+	    <name>git2 snapshot repository</name>
+	    <url>https://git2.lundellnet.com:8084/nexus/content/repositories/snapshots</url>
+	</pluginRepository>
+    </pluginRepositories>
+
+    <distributionManagement>
+	<repository>
+	    <id>lundellnet-git2</id>
+	    <name>git2 release repository</name>
+    	    <url>https://git2.lundellnet.com:8084/nexus/content/repositories/releases</url>
+	</repository>
+	<snapshotRepository>
+	    <id>lundellnet-git2</id>
+	    <name>git2 snapshot repository</name>
+	    <url>https://git2.lundellnet.com:8084/nexus/content/repositories/snapshots</url>
+	</snapshotRepository>
+    </distributionManagement>
+
+	<build>
+	    <pluginManagement>
+		<plugins>
+		    <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>${maven.version}</version>
+			<configuration>
+			    <source>${java.version}</source>
+			    <target>${java.version}</target>
+			</configuration>
+		    </plugin>
+		</plugins>
+	    </pluginManagement>
+	    <resources>
+		<resource>
+		    <directory>src/main/java</directory>
+		    <includes>
+			<include>**/*.java</include>
+		    </includes>
+		</resource>
+		<resource>
+		    <directory>${toolbox_obj.dir.schema_annotation}</directory>
+		    <includes>
+			<include>**/*.xsd</include>
+			<include>**/*.xjb</include>
+		    </includes>
+		</resource>
+		<resource>
+		    <directory>${toolbox_obj.dir.generate_annotation}</directory>
+		    <includes>
+			<include>**/*.java</include>
+		    </includes>
+		</resource>
+		<resource>
+		    <directory></directory>
+		    <includes>
+			<include>LICENSE-2.0.txt</include>
+		    </includes>
+		</resource>
+	    </resources>
+	    <plugins>
+		<plugin>
+		    <groupId>org.jvnet.jaxb2.maven2</groupId>
+		    <artifactId>maven-jaxb2-plugin</artifactId>
+		    <version>${jaxb2_plugin.version}</version>
+		    <executions>
+			<execution>
+			   <id>toolbox_obj-annotation-generate</id>
+			    <goals>
+				<goal>generate</goal>
+			    </goals>
+			    <configuration>
+				<extension>true</extension>
+				<args>
+				    <arg>-Xannotate</arg>
+				    <arg>-Xjavadoc</arg>
+				</args>
+				<plugins>
+				    <plugin>
+					<groupId>org.jvnet.jaxb2_commons</groupId>
+					<artifactId>jaxb2-basics-annotate</artifactId>
+					<version>0.6.5</version>
+				    </plugin>
+				</plugins>
+				<schemaDirectory>${toolbox_obj.dir.schema_annotation}</schemaDirectory>
+				<schemaIncludes>
+				    <include>toolbox_obj-annotation.xsd</include>
+				</schemaIncludes>
+				<generateDirectory>${toolbox_obj.dir.generate_annotation}</generateDirectory>
+				<episode>true</episode>
+				<episodeFile>${toolbox_obj.dir.generate_annotation}/META-INF/sun-jaxb.episode</episodeFile>
+			    </configuration>
+			</execution>
+		    </executions>
+		    <configuration>
+			<strict>false</strict>
+		    </configuration>
+		    <dependencies>
+			<dependency>
+			    <groupId>javax.xml.bind</groupId>
+			    <artifactId>jaxb-api</artifactId>
+			    <version>${jaxb.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.cxf.xjcplugins</groupId>
+			    <artifactId>cxf-xjc-javadoc</artifactId>
+			    <version>${cxf_javadoc.version}</version>
+			</dependency>
+		    </dependencies>
+		</plugin>
+		<plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-javadoc-plugin</artifactId>
+		    <version>2.10.4</version>
+		    <configuration>
+			<outputDirectory>${toolbox_obj.dir.api_doc}</outputDirectory>
+			<additionalparam>-Xdoclint:none</additionalparam>
+		    </configuration>
+		    <executions>
+			<execution>
+			    <id>generate-javadocs</id>
+			    <phase>package</phase>
+			    <goals>
+				<goal>javadoc</goal>
+			    </goals>
+			</execution>
+		    </executions>
+		</plugin>
+	    </plugins>
+	</build>
+
+	<dependencies>
+
+	    <dependency>
+		<groupId>javax.xml.bind</groupId>
+		<artifactId>jaxb-api</artifactId>
+		<version>${jaxb.version}</version>
+	    </dependency>
+
+	    <dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	    </dependency>
+
+	    <dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>3.8.1</version>
+		<scope>test</scope>
+	    </dependency>
+
+	</dependencies>
+</project>
