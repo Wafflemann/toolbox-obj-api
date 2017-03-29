@@ -15,15 +15,20 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.annotations;
+package com.lundellnet.toolbox.obj.data_access.configurables;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.util.stream.Stream;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface CollectionChild {
-	
+import com.lundellnet.toolbox.obj.data_access.configs.CollectingDataAccessConf;
+
+public interface CollectingDataAccess <I, O, C extends CollectingDataAccessConf<I, O>>
+		extends ConfigurableDataAccess<C>
+{
+	default O get() {
+		return conf().dataPoint().getter().get();
+	}
+
+	default void set(Stream<I> s) {
+		conf().dataPoint().setter().accept(s);
+	}
 }

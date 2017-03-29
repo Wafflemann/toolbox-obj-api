@@ -1,7 +1,7 @@
 /*
  Copyright 2017 Appropriate Technologies LLC.
 
- This file is part of toolbox-obj, a component of the Lundellnet Java Toolbox.
+ This file is part of toolbox-obj-api, a component of the Lundellnet Java Toolbox.
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.

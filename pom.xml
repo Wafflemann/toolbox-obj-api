@@ -12,12 +12,12 @@
 	<java.version>1.8</java.version>
 	<maven.version>2.3.2</maven.version>
 	<jaxb.version>2.1</jaxb.version>
-	<jaxb2_plugin.version>0.13.2</jaxb2_plugin.version>
-	<cxf_javadoc.version>3.0.4</cxf_javadoc.version>
-	<toolbox_obj.dir.project_package>${basedir}/src/main/resources/com/lundellnet/toolbox/obj</toolbox_obj.dir.project_package>
-	<toolbox_obj.dir.schema_api>${toolbox_obj.dir.project_package}/api</toolbox_obj.dir.schema_api>
-	<toolbox_obj.dir.generate_api>${project.build.directory}/generated-sources/xjc1</toolbox_obj.dir.generate_api>
-	<toolbox_obj.dir.api_doc>${project.build.directory}/site/toolbox-obj_apidocs</toolbox_obj.dir.api_doc>
+	<jaxb2-plugin.version>0.13.2</jaxb2-plugin.version>
+	<cxf-javadoc.version>3.0.4</cxf-javadoc.version>
+	<toolbox_obj.dir.project-package>${basedir}/src/main/resources/com/lundellnet/toolbox/obj</toolbox_obj.dir.project-package>
+	<toolbox_obj.dir.schema-data_access>${toolbox_obj.dir.project-package}/data_access</toolbox_obj.dir.schema-data_access>
+	<toolbox_obj.dir.generate-data_access>${project.build.directory}/generated-sources/xjc1</toolbox_obj.dir.generate-data_access>
+	<toolbox_obj.dir.api-doc>${project.build.directory}/site/toolbox_obj-apidocs</toolbox_obj.dir.api-doc>
     </properties>
 
     <repositories>
@@ -81,14 +81,14 @@
 		    </includes>
 		</resource>
 		<resource>
-		    <directory>${toolbox_obj.dir.schema_api}</directory>
+		    <directory>${toolbox_obj.dir.schema-data_access}</directory>
 		    <includes>
 			<include>**/*.xsd</include>
 			<include>**/*.xjb</include>
 		    </includes>
 		</resource>
 		<resource>
-		    <directory>${toolbox_obj.dir.generate_api}</directory>
+		    <directory>${toolbox_obj.dir.generate-data_access}</directory>
 		    <includes>
 			<include>**/*.java</include>
 		    </includes>
@@ -104,36 +104,28 @@
 		<plugin>
 		    <groupId>org.jvnet.jaxb2.maven2</groupId>
 		    <artifactId>maven-jaxb2-plugin</artifactId>
-		    <version>${jaxb2_plugin.version}</version>
+		    <version>${jaxb2-plugin.version}</version>
 		    <executions>
 			<execution>
-			   <id>toolbox_obj-api-generate</id>
+			   <id>toolbox_obj-data_access-generate</id>
 			    <goals>
 				<goal>generate</goal>
 			    </goals>
 			    <configuration>
 				<extension>true</extension>
 				<args>
-				    <arg>-Xannotate</arg>
 				    <arg>-Xjavadoc</arg>
 				</args>
-				<plugins>
-				    <plugin>
-					<groupId>org.jvnet.jaxb2_commons</groupId>
-					<artifactId>jaxb2-basics-annotate</artifactId>
-					<version>0.6.5</version>
-				    </plugin>
-				</plugins>
-				<schemaDirectory>${toolbox_obj.dir.schema_api}</schemaDirectory>
+				<schemaDirectory>${toolbox_obj.dir.schema-data_access}</schemaDirectory>
 				<schemaIncludes>
-				    <include>toolbox_obj-api.xsd</include>
+				    <include>toolbox_obj-data_access.xsd</include>
 				</schemaIncludes>
 				<bindingIncludes>
-				    <include>toolbox_obj-api.xjb</include>
+				    <include>toolbox_obj-data_access.xjb</include>
 				</bindingIncludes>
-				<generateDirectory>${toolbox_obj.dir.generate_api}</generateDirectory>
+				<generateDirectory>${toolbox_obj.dir.generate-data_access}</generateDirectory>
 				<episode>true</episode>
-				<episodeFile>${toolbox_obj.dir.generate_api}/META-INF/sun-jaxb.episode</episodeFile>
+				<episodeFile>${toolbox_obj.dir.generate-data_access}/META-INF/sun-jaxb.episode</episodeFile>
 			    </configuration>
 			</execution>
 		    </executions>
@@ -149,7 +141,7 @@
 			<dependency>
 			    <groupId>org.apache.cxf.xjcplugins</groupId>
 			    <artifactId>cxf-xjc-javadoc</artifactId>
-			    <version>${cxf_javadoc.version}</version>
+			    <version>${cxf-javadoc.version}</version>
 			</dependency>
 		    </dependencies>
 		</plugin>
@@ -158,7 +150,7 @@
 		    <artifactId>maven-javadoc-plugin</artifactId>
 		    <version>2.10.4</version>
 		    <configuration>
-			<outputDirectory>${toolbox_obj.dir.api_doc}</outputDirectory>
+			<outputDirectory>${toolbox_obj.dir.api-doc}</outputDirectory>
 			<additionalparam>-Xdoclint:none</additionalparam>
 		    </configuration>
 		    <executions>

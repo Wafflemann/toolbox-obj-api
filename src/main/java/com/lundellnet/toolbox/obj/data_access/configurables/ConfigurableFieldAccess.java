@@ -15,15 +15,25 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.annotations;
+package com.lundellnet.toolbox.obj.data_access.configurables;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.reflect.Field;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface CollectionChild {
+import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
+
+public interface ConfigurableFieldAccess <I, O, C extends DataAccessConf<?, ?>>
+		extends ConfigurableDataAccess<C>
+{
+	default Field getField() {
+		return conf().dataPoint().field();
+	}
 	
+	default String getFieldName() {
+		return getField().getName();
+	}
+	
+	@SuppressWarnings("unchecked")
+	default Class<O> getFieldType() {
+		return (Class<O>) getField().getType();
+	}
 }

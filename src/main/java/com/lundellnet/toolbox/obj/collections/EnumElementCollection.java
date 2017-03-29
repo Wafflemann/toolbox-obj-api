@@ -15,15 +15,12 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.annotations;
+package com.lundellnet.toolbox.obj.collections;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import com.lundellnet.toolbox.obj.elements.EnumElement;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface CollectionChild {
-	
+public interface EnumElementCollection <D extends Enum<D>, R, E extends EnumElement<?, ?, ?, D>>
+		extends DataElementCollection<R, E>
+{
+    Class<D> getCollectionEnumClass();
 }

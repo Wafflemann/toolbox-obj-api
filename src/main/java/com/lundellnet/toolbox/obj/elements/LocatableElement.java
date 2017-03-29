@@ -15,15 +15,22 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.annotations;
+package com.lundellnet.toolbox.obj.elements;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import com.lundellnet.toolbox.obj.annotations.DataLocation;
+import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
+import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface CollectionChild {
-	
+public interface LocatableElement <I, O, C extends DataAccessConf<I, O>>
+		extends ConfigurableFieldAccess<I, O, C>
+{
+	default DataLocation getLocation() {
+		DataLocation loc = getField().getAnnotation(DataLocation.class);
+		
+		if (loc == null) {
+			throw new DataPointElementException("No " + DataLocation.class.getName() + " associated with this Element.");
+		}
+		
+		return loc;
+	}
 }

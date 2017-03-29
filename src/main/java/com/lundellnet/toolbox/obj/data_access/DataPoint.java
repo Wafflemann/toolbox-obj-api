@@ -15,15 +15,15 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.annotations;
+package com.lundellnet.toolbox.obj.data_access;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface CollectionChild {
+public interface DataPoint <I, O>
+		extends FieldPoint
+{
+	Consumer<I> setter();
 	
+	Supplier<O> getter();
 }

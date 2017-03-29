@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<xs:schema version="1.0"
+	targetNamespace="https://lundellnet.com/toolbox/obj"
+	xmlns="https://lundellnet.com/toolbox/obj"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:annox="http://annox.dev.java.net"
+	elementFormDefault="qualified">
+
+    <xs:simpleType name="ComponentState">
+	<xs:annotation><xs:documentation>
+	    Identifies the possibles states a component can be in.
+	</xs:documentation></xs:annotation>
+	<xs:restriction base="xs:string">
+	    <xs:enumeration value="NotReady">
+		<xs:annotation><xs:documentation>
+		    The Component is not ready for actions to be invoked upon it.
+		</xs:documentation></xs:annotation>
+	    </xs:enumeration>
+	    <xs:enumeration value="NoValue">
+		<xs:annotation><xs:documentation>
+		    The Component currently does not have a value assigned to it.
+		</xs:documentation></xs:annotation>
+	    </xs:enumeration>
+	    <xs:enumeration value="Readable">
+		<xs:annotation><xs:documentation>
+		    The Component is currently readable. Though does not indicate that the Component is writable to.
+		</xs:documentation></xs:annotation>
+	    </xs:enumeration>
+	    <xs:enumeration value="Writable">
+		<xs:annotation><xs:documentation>
+		     The Component is currently writable. This also indicates that the component can be read from.
+		</xs:documentation></xs:annotation>
+	    </xs:enumeration>
+	</xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

@@ -15,15 +15,17 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.annotations;
+package com.lundellnet.toolbox.obj.elements;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface CollectionChild {
+public class DataPointElementException extends RuntimeException {
 	
+	private static final long serialVersionUID = 7991397523893920668L;
+
+	DataPointElementException(String msg) {
+		super(msg);
+	}
+	
+	DataPointElementException(String msg, Throwable ex) {
+		super(msg, ex);
+	}
 }

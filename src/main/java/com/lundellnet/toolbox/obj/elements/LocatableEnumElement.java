@@ -15,15 +15,10 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.annotations;
+package com.lundellnet.toolbox.obj.elements;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import com.lundellnet.toolbox.obj.elements.configs.EnumElementConf;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface CollectionChild {
-	
-}
+public interface LocatableEnumElement <I, O, C extends EnumElementConf<I, O, D>, D extends Enum<D>>
+		extends LocatableElement<I, O, C>, EnumElement<I, O, C, D>
+{}

@@ -15,15 +15,17 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.annotations;
+package com.lundellnet.toolbox.obj.elements.builders;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import com.lundellnet.toolbox.obj.Reflect;
+import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
+import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableDataAccess;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface CollectionChild {
+@FunctionalInterface
+public interface ElementBuilder <C extends DataAccessConf<?, ?>, E extends ConfigurableDataAccess<?>> {
+	@SuppressWarnings("unchecked")
+	static <E extends ConfigurableDataAccess<?>, B extends ElementBuilder<?, E>> B getBuilder(Class<E> elementClass)
+			{ return (B) Reflect.invokePublicMethod(Reflect.getPublicMethod("builder", elementClass), null); }
 	
+	E build(C elementConf);
 }
