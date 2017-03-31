@@ -1,13 +1,12 @@
 package com.lundellnet.toolbox.obj.annotations;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface DataMapping {
-    String id();
-  
-    String mapping() default "";
-    
-    String delimiter() default "/";
+@Target(ElementType.FIELD)
+public @interface DataMappings {
+  DataMapping[] value();
 }
