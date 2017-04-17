@@ -15,16 +15,20 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.annotations;
+package com.lundellnet.toolbox.obj.data_access.configurables;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import java.util.Set;
 
-@Retention(RetentionPolicy.RUNTIME)
-public @interface DataMapping {
-    String id();
-  
-    String mapping() default "";
+import com.lundellnet.toolbox.obj.data_access.configs.ConvertingSetAccessConf;
+
+public interface ConvertingSetAccess <T, R, C extends ConvertingSetAccessConf<T, R>>
+	extends ConfigurableDataAccess<C>
+{
+    default Set<R> get() {
+	return conf().dataPoint().getter().get();
+    }
     
-    String delimiter() default "/";
+    default void set(T t) {
+	conf().dataPoint().setter().accept(t);
+    }
 }
