@@ -15,17 +15,11 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.annotations;
+package com.lundellnet.toolbox.obj.adapters;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+public interface ComponentAdapter <I, O> {
 
-import com.lundellnet.toolbox.obj.adapters.ComponentAdapter;
-
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface CollectionComponent {
-    Class<ComponentAdapter<?, ?>> adapter();
+    O convert(I i);
+    
+    I revert(O o);
 }
