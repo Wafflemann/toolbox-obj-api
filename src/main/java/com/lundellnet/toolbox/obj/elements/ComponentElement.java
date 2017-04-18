@@ -17,20 +17,20 @@
  */
 package com.lundellnet.toolbox.obj.elements;
 
-import com.lundellnet.toolbox.obj.annotations.DataMapping;
+import com.lundellnet.toolbox.obj.annotations.CollectionComponent;
 import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
 
-public interface DataMappedElement <I, O, C extends DataAccessConf<I, O>>
-		extends ConfigurableFieldAccess<I, O, C>
+public interface ComponentElement <I, O, C extends DataAccessConf<I, O>>
+	extends ConfigurableFieldAccess<I, O, C>
 {
-    default DataMapping getMapping() {
-	DataMapping map = getField().getAnnotation(DataMapping.class);
+    default CollectionComponent getComponent() {
+	CollectionComponent component = getField().getAnnotation(CollectionComponent.class);
 	
-	if (map == null) {
-		throw new DataPointElementException("No " + DataMapping.class.getName() + " associated with this Element.");
+	if (component == null) {
+	    throw new DataPointElementException("No " + CollectionComponent.class.getName() + " associated with this Element.");
 	}
 	
-	return map;
+	return component;
     }
 }
