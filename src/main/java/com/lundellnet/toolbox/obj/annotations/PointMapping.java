@@ -17,11 +17,14 @@
  */
 package com.lundellnet.toolbox.obj.annotations;
 
-import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD})
-public @interface CollectionRoot {}
+public @interface PointMapping {
+    String id();
+  
+    String mapping() default "";
+    
+    String delimiter() default "/";
+}

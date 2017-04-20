@@ -28,29 +28,28 @@ import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableDataAcce
 public interface CreatingCollection <C extends DataCollectionConf<R, E, ?>, R, D, A extends DataAccessConf<?, ?>, E extends ConfigurableDataAccess<?>>
 	extends DataCollection<C, R, E>, ElementCreatingCollection<R, D, A, E>
 {
-	
 	@Override
 	default
-			void includeElement(E e)
+		void includeElement(E e)
 	{ conf().collectionStream().includeElement(e); }
 
 	@Override
 	default
-			Stream<E> elements()
+		Stream<E> elements()
 	{ return conf().collectionStream().getStream(); }
 
 	@Override
 	default
-			Class<R> getDataClass()
+		Class<R> getDataClass()
 	{ return conf().resultClass(); }
 
 	@Override
 	default
-			Supplier<R> getDataSupplier()
+		Supplier<R> getDataSupplier()
 	{ return conf().resultSupplier(); }
 
 	@Override
 	default
-			R getData()
+		R getData()
 	{ return conf().resultSupplier().get(); }
 }

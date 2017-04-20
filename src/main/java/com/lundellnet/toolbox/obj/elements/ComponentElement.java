@@ -17,18 +17,18 @@
  */
 package com.lundellnet.toolbox.obj.elements;
 
-import com.lundellnet.toolbox.obj.annotations.CollectionComponent;
+import com.lundellnet.toolbox.obj.annotations.MatrixComponent;
 import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
 
 public interface ComponentElement <I, O, C extends DataAccessConf<I, O>>
 	extends ConfigurableFieldAccess<I, O, C>, AnnotatedElement<I, O, C>
 {
-    default CollectionComponent getComponent() {
-	CollectionComponent component = getField().getAnnotation(CollectionComponent.class);
+    default MatrixComponent getComponent() {
+	MatrixComponent component = getField().getAnnotation(MatrixComponent.class);
 	
 	if (component == null) {
-	    throw new DataPointElementException("No " + CollectionComponent.class.getName() + " associated with this Element.");
+	    throw new DataPointElementException("No " + MatrixComponent.class.getName() + " associated with this Element.");
 	}
 	
 	return component;

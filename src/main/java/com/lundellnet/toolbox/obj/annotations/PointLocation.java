@@ -24,6 +24,10 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface DataMappings {
-  DataMapping[] value();
+public @interface PointLocation {
+	int column() default 0;
+	
+	int length() default 0;
+	
+	int row() default 0;
 }

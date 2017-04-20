@@ -17,18 +17,18 @@
  */
 package com.lundellnet.toolbox.obj.elements;
 
-import com.lundellnet.toolbox.obj.annotations.DataLocation;
+import com.lundellnet.toolbox.obj.annotations.PointLocation;
 import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
 
 public interface LocatableElement <I, O, C extends DataAccessConf<I, O>>
 		extends ConfigurableFieldAccess<I, O, C>, AnnotatedElement<I, O, C>
 {
-	default DataLocation getLocation() {
-		DataLocation loc = getField().getAnnotation(DataLocation.class);
+	default PointLocation getLocation() {
+		PointLocation loc = getField().getAnnotation(PointLocation.class);
 		
 		if (loc == null) {
-			throw new DataPointElementException("No " + DataLocation.class.getName() + " associated with this Element.");
+			throw new DataPointElementException("No " + PointLocation.class.getName() + " associated with this Element.");
 		}
 		
 		return loc;

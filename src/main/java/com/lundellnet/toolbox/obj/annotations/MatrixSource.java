@@ -22,10 +22,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.lundellnet.toolbox.obj.adapters.ComponentAdapter;
-
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface CollectionComponent {
-    Class<ComponentAdapter<?, ?>> adapter();
+@Target({ElementType.TYPE, ElementType.METHOD})
+public @interface MatrixSource {
+    Class<?> sourceType();
 }

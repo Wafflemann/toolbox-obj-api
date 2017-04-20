@@ -24,6 +24,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface CollectionConstant {
+public @interface MatrixConstant {
 	Class<?> collectionClass();
 }

@@ -27,12 +27,15 @@ import java.util.function.Function;
 
 import org.apache.log4j.Logger;
 
+import com.lundellnet.toolbox.obj.data_access.MutationType;
+
 /**
  * Class for handling basic refection.
  */
 public class Reflect {
     
     private static final Logger DEFAULT_LOG = Logger.getLogger(Reflect.class);
+    private static final String GET_SET_REGEX = "\\w{1}(\\w*)([A-Z]*.*)";
     
     private Reflect() {}
     
@@ -108,6 +111,17 @@ public class Reflect {
     	
     	return methods;
     }
+    
+    public static Method getMutationMethod(MutationType mutationType, Class<?> methodClass, Field mutationField) {
+		String fieldName = mutationField.getName();
+		
+		return Reflect.getPublicMethod(
+				fieldName.replaceAll(GET_SET_REGEX, mutationType.name().toLowerCase().concat(fieldName.substring(0, 1).toUpperCase()) + "$1$2"),
+				methodClass,
+				(mutationType.equals(MutationType.GET) ? mutationField.getType() : null)
+			);
+    }
+    
     
     /**
      * Invokes a specified method object under a specific object instance

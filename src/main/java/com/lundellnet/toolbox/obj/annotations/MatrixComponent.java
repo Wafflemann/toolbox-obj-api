@@ -17,14 +17,15 @@
  */
 package com.lundellnet.toolbox.obj.annotations;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import com.lundellnet.toolbox.obj.adapters.ComponentAdapter;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface DataMapping {
-    String id();
-  
-    String mapping() default "";
-    
-    String delimiter() default "/";
+@Target(ElementType.FIELD)
+public @interface MatrixComponent {
+    Class<ComponentAdapter<?, ?>> adapter();
 }

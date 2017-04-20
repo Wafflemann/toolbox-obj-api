@@ -17,22 +17,20 @@
  */
 package com.lundellnet.toolbox.obj.elements;
 
-import com.lundellnet.toolbox.obj.annotations.PointMapping;
-import com.lundellnet.toolbox.obj.annotations.PointMappings;
+import com.lundellnet.toolbox.obj.annotations.MatrixSource;
 import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
 
-public interface MultiMappedElement <I, O, C extends DataAccessConf<I, O>>
+public interface MatrixSourceElement <I, O, C extends DataAccessConf<I, O>>
 	extends ConfigurableFieldAccess<I, O, C>, AnnotatedElement<I, O, C>
 {
-    default PointMapping[] getMapping() {
-	PointMapping[] map = getField().getAnnotation(PointMappings.class).value();
+    default MatrixSource getMatrix() {
+	MatrixSource source = getField().getAnnotation(MatrixSource.class);
 	
-	if (map == null) {//TODO throw exception? maybe return null or have a property setting?
-	    throw new DataPointElementException(
-		    "No " + PointMappings.class.getName() + " associated with this Element.");
+	if (source == null) {
+	    throw new DataPointElementException("No " + MatrixSource.class.getName() + " associated with this Element.");
 	}
-
-	return map;
+	
+	return source;
     }
 }
