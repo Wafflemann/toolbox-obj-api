@@ -17,9 +17,9 @@
  */
 package com.lundellnet.toolbox.obj.data_access.configurables;
 
-import com.lundellnet.toolbox.obj.data_access.configs.ConvertingDataAccessConf;
+import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 
-public interface ConvertingDataAccess <T, R, C extends ConvertingDataAccessConf<T, R>>
+public interface ConvertingDataAccess <T, R, C extends DataAccessConf<T, R>>
 		extends ConfigurableDataAccess<C>
 {
     default R get() {

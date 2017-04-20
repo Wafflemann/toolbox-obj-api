@@ -17,10 +17,10 @@
  */
 package com.lundellnet.toolbox.obj.data_access.configurables;
 
-import com.lundellnet.toolbox.obj.data_access.configs.StandardDataAccessConf;
+import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 
 @FunctionalInterface
-public interface StandardDataAccess <T, C extends StandardDataAccessConf<T>>
+public interface StandardDataAccess <T, C extends DataAccessConf<T, T>>
 		extends ConfigurableDataAccess<C>
 {
 	default T get() {

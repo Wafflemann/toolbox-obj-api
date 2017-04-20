@@ -20,9 +20,9 @@ package com.lundellnet.toolbox.obj.data_access.configurables;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import com.lundellnet.toolbox.obj.data_access.configs.CollectingSetAccessConf;
+import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 
-public interface CollectingSetAccess <I, O, C extends CollectingSetAccessConf<I, O>>
+public interface CollectingSetAccess <I, O, C extends DataAccessConf<Stream<I>, Set<O>>>
 		extends ConfigurableDataAccess<C>
 {
 	default Set<O> get() {

@@ -15,7 +15,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.data_containers.builders;
+package com.lundellnet.toolbox.obj.data_containers.compilation;
 
 import java.util.function.BiFunction;
 

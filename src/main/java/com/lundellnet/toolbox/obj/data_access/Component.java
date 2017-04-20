@@ -17,12 +17,7 @@
  */
 package com.lundellnet.toolbox.obj.data_access;
 
-import java.util.Set;
-
 public interface Component <T> {
-
-  Set<CrawlStep<?, ?>> steps();
-  
   ComponentState getState();
   
   T getValue();

@@ -15,20 +15,27 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.collections.configs;
+package com.lundellnet.toolbox.obj.data_containers.compilation;
 
-import java.util.function.Supplier;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableDataAccess;
 import com.lundellnet.toolbox.obj.data_containers.CollectionContainer;
-import com.lundellnet.toolbox.obj.elements.compilation.ElementBuilder;
 
-public interface DataCollectionConf <R, E extends ConfigurableDataAccess<?>, B extends ElementBuilder<?, ?>> {
-	B elementBuilder();
+@FunctionalInterface
+public interface MapCollectionBuilder <D, E extends ConfigurableDataAccess<?>> {
+	CollectionContainer<D, E> build(Function<E, D> i, boolean p, BiFunction<E, E, E> m);
 	
-	CollectionContainer<?, E> collectionStream();
+	default CollectionContainer<D, E> build(Function<E, D> i, BiFunction<E, E, E> m) {
+		return build(i, true, m);
+	}
 	
-	Class<R> resultClass();
+	default CollectionContainer<D, E> build(Function<E, D> i, boolean p) {
+		return build(i, p, (l, r) -> l);
+	}
 	
-	Supplier<R> resultSupplier();
+	default CollectionContainer<D, E> build(Function<E, D> i) {
+		return build(i, true, (l, r) -> l);
+	}
 }

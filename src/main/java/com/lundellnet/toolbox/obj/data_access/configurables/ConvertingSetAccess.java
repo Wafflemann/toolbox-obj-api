@@ -19,9 +19,9 @@ package com.lundellnet.toolbox.obj.data_access.configurables;
 
 import java.util.Set;
 
-import com.lundellnet.toolbox.obj.data_access.configs.ConvertingSetAccessConf;
+import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 
-public interface ConvertingSetAccess <T, R, C extends ConvertingSetAccessConf<T, R>>
+public interface ConvertingSetAccess <T, R, C extends DataAccessConf<T, Set<R>>>
 	extends ConfigurableDataAccess<C>
 {
     default Set<R> get() {

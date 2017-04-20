@@ -23,12 +23,12 @@ import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
 
 public interface MultiMappedElement <I, O, C extends DataAccessConf<I, O>>
-	extends ConfigurableFieldAccess<I, O, C>
+	extends ConfigurableFieldAccess<I, O, C>, AnnotatedElement<I, O, C>
 {
     default DataMapping[] getMapping() {
 	DataMapping[] map = getField().getAnnotation(DataMappings.class).value();
 	
-	if (map == null) {
+	if (map == null) {//TODO throw exception? maybe return null or have a property setting?
 	    throw new DataPointElementException(
 		    "No " + DataMappings.class.getName() + " associated with this Element.");
 	}

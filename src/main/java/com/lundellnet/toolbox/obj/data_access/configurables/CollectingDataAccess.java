@@ -19,9 +19,9 @@ package com.lundellnet.toolbox.obj.data_access.configurables;
 
 import java.util.stream.Stream;
 
-import com.lundellnet.toolbox.obj.data_access.configs.CollectingDataAccessConf;
+import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 
-public interface CollectingDataAccess <I, O, C extends CollectingDataAccessConf<I, O>>
+public interface CollectingDataAccess <I, O, C extends DataAccessConf<Stream<I>, O>>
 		extends ConfigurableDataAccess<C>
 {
 	default O get() {

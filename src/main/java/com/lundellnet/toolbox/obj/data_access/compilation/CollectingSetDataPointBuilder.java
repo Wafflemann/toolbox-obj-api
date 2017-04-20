@@ -15,9 +15,16 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.data_access.configs;
+package com.lundellnet.toolbox.obj.data_access.compilation;
 
-@FunctionalInterface
-public interface StandardDataAccessConf <T>
-		extends DataAccessConf<T, T>
-{}
+import java.lang.reflect.Field;
+import java.util.Set;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+
+import com.lundellnet.toolbox.obj.collectors.CoreCollector;
+import com.lundellnet.toolbox.obj.data_access.DataPoint;
+
+public interface CollectingSetDataPointBuilder <I, O> {
+	DataPoint<Stream<I>, Set<O>> build(Class<?> parentClass, Supplier<?> parentSupplier, Field elementField, CoreCollector<I, ?, ?, O> collector);
+}

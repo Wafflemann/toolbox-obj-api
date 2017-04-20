@@ -18,7 +18,7 @@
 package com.lundellnet.toolbox.obj.collections.configs;
 
 import com.lundellnet.toolbox.obj.elements.EnumElement;
-import com.lundellnet.toolbox.obj.elements.builders.ElementBuilder;
+import com.lundellnet.toolbox.obj.elements.compilation.ElementBuilder;
 
 public interface EnumDataCollectionConf <D extends Enum<D>, R, E extends EnumElement<?, ?, ?, D>, B extends ElementBuilder<?, ?>>
 		extends DataCollectionConf<R, E, B>

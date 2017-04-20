@@ -15,14 +15,15 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.data_access.builders;
+package com.lundellnet.toolbox.obj.data_access.compilation;
 
 import java.lang.reflect.Field;
+import java.util.Set;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import com.lundellnet.toolbox.obj.data_access.DataPoint;
 
-@FunctionalInterface
-public interface DataPointBuilder <I, O> {
-	DataPoint<I, O> build(Class<?> parentClass, Supplier<?> parentSupplier, Field elementField);
+public interface ConvertingSetDataPointBuilder <I, O> {
+    	DataPoint<I, Set<O>> build(Class<?> parentClass, Supplier<?> parentSupplier, Field elementField, Function<I, O> converter);
 }

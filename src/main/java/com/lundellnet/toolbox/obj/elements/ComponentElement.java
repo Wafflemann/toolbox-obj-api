@@ -22,7 +22,7 @@ import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
 
 public interface ComponentElement <I, O, C extends DataAccessConf<I, O>>
-	extends ConfigurableFieldAccess<I, O, C>
+	extends ConfigurableFieldAccess<I, O, C>, AnnotatedElement<I, O, C>
 {
     default CollectionComponent getComponent() {
 	CollectionComponent component = getField().getAnnotation(CollectionComponent.class);

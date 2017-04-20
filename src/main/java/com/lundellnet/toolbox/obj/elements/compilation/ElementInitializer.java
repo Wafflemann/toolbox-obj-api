@@ -15,8 +15,10 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.data_access.configs;
+package com.lundellnet.toolbox.obj.elements.compilation;
 
-public interface ConvertingDataAccessConf <T, R>
-		extends DataAccessConf<T, R>
-{}
+import java.lang.reflect.Field;
+
+public interface ElementInitializer {
+    Field field();
+}

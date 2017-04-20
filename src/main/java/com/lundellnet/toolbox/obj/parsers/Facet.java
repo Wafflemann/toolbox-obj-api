@@ -15,10 +15,12 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.data_access;
+package com.lundellnet.toolbox.obj.parsers;
 
-import java.util.stream.Stream;
+import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 
-public interface ComponentProvider <C extends Component<?>> {
-  Stream<C> componentStream();
+public interface Facet <D, A extends DataAccessConf<?, ?>> {
+    D identity();
+    
+    A elementConf();
 }

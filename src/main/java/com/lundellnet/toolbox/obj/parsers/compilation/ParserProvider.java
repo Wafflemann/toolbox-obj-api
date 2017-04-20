@@ -15,16 +15,12 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.data_access.builders;
+package com.lundellnet.toolbox.obj.parsers.compilation;
 
-import java.lang.reflect.Field;
-import java.util.Set;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
+import com.lundellnet.toolbox.obj.collections.DataElementCollection;
+import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableDataAccess;
+import com.lundellnet.toolbox.obj.parsers.Parser;
 
-import com.lundellnet.toolbox.obj.collectors.CoreCollector;
-import com.lundellnet.toolbox.obj.data_access.DataPoint;
-
-public interface CollectingSetDataPointBuilder <I, O> {
-	DataPoint<Stream<I>, Set<O>> build(Class<?> parentClass, Supplier<?> parentSupplier, Field elementField, CoreCollector<I, ?, ?, O> collector);
+public interface ParserProvider <T, P extends Parser<T, C, E, R>, C extends DataElementCollection<R, E>, E extends ConfigurableDataAccess<?>, R> {
+    P create();
 }

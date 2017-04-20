@@ -22,7 +22,7 @@ import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
 
 public interface MappedElement <I, O, C extends DataAccessConf<I, O>>
-	extends ConfigurableFieldAccess<I, O, C>
+	extends ConfigurableFieldAccess<I, O, C>, AnnotatedElement<I, O, C>
 {
     default DataMapping getMapping() {
 	DataMapping map = getField().getAnnotation(DataMapping.class);

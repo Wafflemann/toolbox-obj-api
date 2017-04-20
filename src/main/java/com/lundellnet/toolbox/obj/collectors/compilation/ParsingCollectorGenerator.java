@@ -15,10 +15,14 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.data_access.configs;
+package com.lundellnet.toolbox.obj.collectors.compilation;
 
-import java.util.Set;
+import java.util.function.Supplier;
 
-public interface StandardSetAccessConf <T>
-		extends DataAccessConf<T, Set<T>>
-{}
+import com.lundellnet.toolbox.obj.collections.DataElementCollection;
+import com.lundellnet.toolbox.obj.collectors.ParsingCollector;
+
+@FunctionalInterface
+public interface ParsingCollectorGenerator <T, R> {
+	ParsingCollector<T, ?, ? extends DataElementCollection<R, ?>, R> generate(Class<R> resultClass, Supplier<R> resultSupplier);
+}

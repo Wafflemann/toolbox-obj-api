@@ -9,5 +9,26 @@
 	<jxb:package name="com.lundellnet.toolbox.obj.data_access" />
     </jxb:schemaBindings>
 
+    <jxb:bindings node="xs:simpleType[@name='AnnotatedElementType']/xs:restriction">
+	<jxb:bindings node="xs:enumeration[@value='com.lundellnet.toolbox.obj.annotations.CollectionComponent']">
+	    <jxb:typesafeEnumMember name="COLLECTION_COMPONENT" />
+	</jxb:bindings>
+	<jxb:bindings node="xs:enumeration[@value='com.lundellnet.toolbox.obj.annotations.CollectionConstant']">
+	    <jxb:typesafeEnumMember name="COLLECTION_CONSTANT" />
+	</jxb:bindings>
+	<jxb:bindings node="xs:enumeration[@value='com.lundellnet.toolbox.obj.annotations.CollectionRoot']">
+	    <jxb:typesafeEnumMember name="COLLECTION_ROOT" />
+	</jxb:bindings>
+	<jxb:bindings node="xs:enumeration[@value='com.lundellnet.toolbox.obj.annotations.DataLocation']">
+	    <jxb:typesafeEnumMember name="DATA_LOCATION" />
+	</jxb:bindings>
+	<jxb:bindings node="xs:enumeration[@value='com.lundellnet.toolbox.obj.annotations.DataMapping']">
+	    <jxb:typesafeEnumMember name="DATA_MAPPING" />
+	</jxb:bindings>
+	<jxb:bindings node="xs:enumeration[@value='com.lundellnet.toolbox.obj.annotations.DataMappings']">
+	    <jxb:typesafeEnumMember name="DATA_MAPPINGS" />
+	</jxb:bindings>
+    </jxb:bindings>
+
 </jxb:bindings>
 </jxb:bindings>

@@ -6,6 +6,17 @@
 	xmlns:annox="http://annox.dev.java.net"
 	elementFormDefault="qualified">
 
+    <xs:simpleType name="AnnotatedElementType">
+	<xs:restriction base="xs:string">
+	    <xs:enumeration value="com.lundellnet.toolbox.obj.annotations.CollectionComponent" />
+	    <xs:enumeration value="com.lundellnet.toolbox.obj.annotations.CollectionConstant" />
+	    <xs:enumeration value="com.lundellnet.toolbox.obj.annotations.CollectionRoot" />
+	    <xs:enumeration value="com.lundellnet.toolbox.obj.annotations.DataLocation" />
+	    <xs:enumeration value="com.lundellnet.toolbox.obj.annotations.DataMapping" />
+	    <xs:enumeration value="com.lundellnet.toolbox.obj.annotations.DataMappings" />
+	</xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="ComponentState">
 	<xs:annotation><xs:documentation>
 	    Identifies the possibles states a component can be in.
