@@ -17,7 +17,7 @@
  */
 package com.lundellnet.toolbox.obj.elements;
 
-import com.lundellnet.toolbox.obj.Reflect;
+import com.lundellnet.toolbox.Reflect;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
 import com.lundellnet.toolbox.obj.elements.configs.EnumElementConf;
 

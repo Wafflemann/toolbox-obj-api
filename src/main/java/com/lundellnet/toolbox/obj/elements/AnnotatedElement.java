@@ -20,7 +20,7 @@ package com.lundellnet.toolbox.obj.elements;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import com.lundellnet.toolbox.obj.data_access.AnnotatedElementType;
+import com.lundellnet.toolbox.api.data_access.AnnotatedElementType;
 import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
 
@@ -28,11 +28,11 @@ public interface AnnotatedElement <I, O, C extends DataAccessConf<I, O>>
 	extends ConfigurableFieldAccess<I, O, C>
 {
     default Stream<AnnotatedElementType> getAssociatedStream() {
-	return Arrays.stream(getField().getDeclaredAnnotations())
-		.map((a) -> AnnotatedElementType.fromValue(a.annotationType().getCanonicalName()));
+		return Arrays.stream(getField().getDeclaredAnnotations())
+			.map((a) -> AnnotatedElementType.fromValue(a.annotationType().getCanonicalName()));
     }
     
     default AnnotatedElementType[] getAssociatedTypes() {
-	return (AnnotatedElementType[]) getAssociatedStream().toArray();
+    	return (AnnotatedElementType[]) getAssociatedStream().toArray();
     }
 }

@@ -17,8 +17,8 @@
  */
 package com.lundellnet.toolbox.obj.elements;
 
-import com.lundellnet.toolbox.obj.annotations.PointMapping;
-import com.lundellnet.toolbox.obj.annotations.PointMappings;
+import com.lundellnet.toolbox.api.data_access.annotations.PointMapping;
+import com.lundellnet.toolbox.api.data_access.annotations.PointMappings;
 import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
 

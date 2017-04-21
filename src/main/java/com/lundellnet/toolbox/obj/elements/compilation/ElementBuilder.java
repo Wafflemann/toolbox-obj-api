@@ -17,7 +17,7 @@
  */
 package com.lundellnet.toolbox.obj.elements.compilation;
 
-import com.lundellnet.toolbox.obj.Reflect;
+import com.lundellnet.toolbox.Reflect;
 import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableDataAccess;
 

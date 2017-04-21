@@ -14,10 +14,11 @@
 	<jaxb.version>2.1</jaxb.version>
 	<jaxb2-plugin.version>0.13.2</jaxb2-plugin.version>
 	<cxf-javadoc.version>3.0.4</cxf-javadoc.version>
-	<toolbox_obj.dir.project-package>${basedir}/src/main/resources/com/lundellnet/toolbox/obj</toolbox_obj.dir.project-package>
-	<toolbox_obj.dir.schema-data_access>${toolbox_obj.dir.project-package}/data_access</toolbox_obj.dir.schema-data_access>
-	<toolbox_obj.dir.generate-data_access>${project.build.directory}/generated-sources/xjc1</toolbox_obj.dir.generate-data_access>
-	<toolbox_obj.dir.api-doc>${project.build.directory}/site/toolbox_obj-apidocs</toolbox_obj.dir.api-doc>
+	<toolbox_api.version>0.0.2-SNAPSHOT</toolbox_api.version>
+	<toolbox_evince.version>0.0.2-SNAPSHOT</toolbox_evince.version>
+	<toolbox.dir.namespace>${basedir}/src/main/resources/com/lundellnet/toolbox</toolbox.dir.namespace>
+	<toolbox_obj.dir.generate>${project.build.directory}/generated-sources/xjc1</toolbox_obj.dir.generate>
+	<toolbox_obj.dir.api_doc>${project.build.directory}/site/toolbox_obj-apidocs</toolbox_obj.dir.api_doc>
     </properties>
 
     <repositories>
@@ -81,14 +82,7 @@
 		    </includes>
 		</resource>
 		<resource>
-		    <directory>${toolbox_obj.dir.schema-data_access}</directory>
-		    <includes>
-			<include>**/*.xsd</include>
-			<include>**/*.xjb</include>
-		    </includes>
-		</resource>
-		<resource>
-		    <directory>${toolbox_obj.dir.generate-data_access}</directory>
+		    <directory>${toolbox_obj.dir.generate}</directory>
 		    <includes>
 			<include>**/*.java</include>
 		    </includes>
@@ -107,7 +101,7 @@
 		    <version>${jaxb2-plugin.version}</version>
 		    <executions>
 			<execution>
-			   <id>toolbox_obj-data_access-generate</id>
+			   <id>toolbox_obj</id>
 			    <goals>
 				<goal>generate</goal>
 			    </goals>
@@ -116,16 +110,16 @@
 				<args>
 				    <arg>-Xjavadoc</arg>
 				</args>
-				<schemaDirectory>${toolbox_obj.dir.schema-data_access}</schemaDirectory>
+				<schemaDirectory>${toolbox.dir.namespace}</schemaDirectory>
 				<schemaIncludes>
-				    <include>toolbox_obj-data_access.xsd</include>
+				    <include>toolbox_obj.xsd</include>
 				</schemaIncludes>
 				<bindingIncludes>
-				    <include>toolbox_obj-data_access.xjb</include>
+				    <include>toolbox_obj.xjb</include>
 				</bindingIncludes>
-				<generateDirectory>${toolbox_obj.dir.generate-data_access}</generateDirectory>
+				<generateDirectory>${toolbox_obj.dir.generate}</generateDirectory>
 				<episode>true</episode>
-				<episodeFile>${toolbox_obj.dir.generate-data_access}/META-INF/sun-jaxb.episode</episodeFile>
+				<episodeFile>${toolbox_obj.dir.generate}/META-INF/toolbox_obj.episode</episodeFile>
 			    </configuration>
 			</execution>
 		    </executions>
@@ -150,7 +144,7 @@
 		    <artifactId>maven-javadoc-plugin</artifactId>
 		    <version>2.10.4</version>
 		    <configuration>
-			<outputDirectory>${toolbox_obj.dir.api-doc}</outputDirectory>
+			<outputDirectory>${toolbox_obj.dir.api_doc}</outputDirectory>
 			<additionalparam>-Xdoclint:none</additionalparam>
 		    </configuration>
 		    <executions>
@@ -167,6 +161,18 @@
 	</build>
 
 	<dependencies>
+
+	    <dependency>
+		<groupId>com.lundellnet</groupId>
+		<artifactId>toolbox-api</artifactId>
+		<version>${toolbox_api.version}</version>
+	    </dependency>
+
+	    <dependency>
+		<groupId>com.lundellnet</groupId>
+		<artifactId>toolbox-evince</artifactId>
+		<version>${toolbox_evince.version}</version>
+	    </dependency>
 
 	    <dependency>
 		<groupId>javax.xml.bind</groupId>
