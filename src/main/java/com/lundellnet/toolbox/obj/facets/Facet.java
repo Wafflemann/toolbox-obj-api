@@ -15,7 +15,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-package com.lundellnet.toolbox.obj.parsers;
+package com.lundellnet.toolbox.obj.facets;
 
 import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 
