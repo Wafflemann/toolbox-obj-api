@@ -17,6 +17,9 @@
  */
 package com.lundellnet.toolbox.obj.elements;
 
+import com.lundellnet.toolbox.api.data_access.annotations.MatrixComponent;
+import com.lundellnet.toolbox.api.data_access.annotations.MatrixComponentAdapter;
+import com.lundellnet.toolbox.api.data_access.annotations.MatrixComponentField;
 import com.lundellnet.toolbox.api.data_access.annotations.MatrixComponentPoint;
 import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
@@ -24,13 +27,19 @@ import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAcc
 public interface ComponentElement <I, O, C extends DataAccessConf<I, O>>
 	extends ConfigurableFieldAccess<I, O, C>, AnnotatedElement<I, O, C>
 {
-    default MatrixComponentPoint getComponent() {
-	MatrixComponentPoint component = getField().getAnnotation(MatrixComponentPoint.class);
-	
-	if (component == null) {
-	    throw new DataPointElementException("No " + MatrixComponentPoint.class.getName() + " associated with this Element.");
+	default MatrixComponent getComponent() {
+		return getField().getAnnotation(MatrixComponent.class);
 	}
 	
-	return component;
+	default MatrixComponentAdapter getComponentAdapter() {
+		return getField().getAnnotation(MatrixComponentAdapter.class);
+	}
+	
+	default MatrixComponentField getComponentField() {
+		return getField().getAnnotation(MatrixComponentField.class);
+	}
+	
+    default MatrixComponentPoint getComponentPoint() {
+		return getField().getAnnotation(MatrixComponentPoint.class);
     }
 }
