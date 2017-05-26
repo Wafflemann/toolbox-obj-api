@@ -17,7 +17,6 @@
  */
 package com.lundellnet.toolbox.obj.elements;
 
-import com.lundellnet.toolbox.Reflect;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableFieldAccess;
 import com.lundellnet.toolbox.obj.elements.configs.EnumElementConf;
 
@@ -25,6 +24,6 @@ public interface EnumElement <I, O, C extends EnumElementConf<I, O, D>, D extend
 		extends ConfigurableFieldAccess<I, O, C>
 {
 	default D getEnumConstant() {
-		return Reflect.enumInstance(conf().enumConstField());//how many times is this invoked?.. should it be stored?
+		return conf().getEnumConstant();
 	}
 }

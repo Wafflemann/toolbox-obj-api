@@ -17,15 +17,10 @@
  */
 package com.lundellnet.toolbox.obj.elements.compilation;
 
-import com.lundellnet.toolbox.Reflect;
 import com.lundellnet.toolbox.obj.data_access.configs.DataAccessConf;
 import com.lundellnet.toolbox.obj.data_access.configurables.ConfigurableDataAccess;
 
 @FunctionalInterface
 public interface ElementBuilder <C extends DataAccessConf<?, ?>, E extends ConfigurableDataAccess<?>> {
-	@SuppressWarnings("unchecked")
-	static <E extends ConfigurableDataAccess<?>, B extends ElementBuilder<?, E>> B getBuilder(Class<E> elementClass)
-			{ return (B) Reflect.invokePublicMethod(Reflect.getPublicMethod("builder", elementClass), null); }
-	
 	E build(C elementConf);
 }

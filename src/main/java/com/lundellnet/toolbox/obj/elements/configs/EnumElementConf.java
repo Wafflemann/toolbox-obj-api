@@ -27,4 +27,6 @@ public interface EnumElementConf <I, O, D extends Enum<D>>
 	Class<D> enumClass();
 	
 	Field enumConstField();
+	
+	D getEnumConstant();
 }

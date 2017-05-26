@@ -15,7 +15,6 @@
 	<jaxb2-plugin.version>0.13.2</jaxb2-plugin.version>
 	<cxf-javadoc.version>3.0.4</cxf-javadoc.version>
 	<toolbox_api.version>0.0.3-SNAPSHOT</toolbox_api.version>
-	<toolbox_evince.version>0.0.3-SNAPSHOT</toolbox_evince.version>
 	<toolbox.dir.namespace>${basedir}/src/main/resources/com/lundellnet/toolbox</toolbox.dir.namespace>
 	<toolbox_obj.dir.generate>${project.build.directory}/generated-sources/xjc1</toolbox_obj.dir.generate>
 	<toolbox_obj.dir.api_doc>${project.build.directory}/site/toolbox_obj-apidocs</toolbox_obj.dir.api_doc>
@@ -166,12 +165,6 @@
 		<groupId>com.lundellnet</groupId>
 		<artifactId>toolbox-api</artifactId>
 		<version>${toolbox_api.version}</version>
-	    </dependency>
-
-	    <dependency>
-		<groupId>com.lundellnet</groupId>
-		<artifactId>toolbox-evince</artifactId>
-		<version>${toolbox_evince.version}</version>
 	    </dependency>
 
 	    <dependency>
